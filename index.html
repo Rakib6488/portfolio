@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md Rakib Mia — Customer Service Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0f14;
+      --surface: #13161d;
+      --card: #181c26;
+      --border: #232739;
+      --accent: #4fd1c5;
+      --accent2: #f6ad55;
+      --text: #e8eaf0;
+      --muted: #7a8099;
+      --heading: #ffffff;
+      --serif: 'DM Serif Display', serif;
+      --sans: 'DM Sans', sans-serif;
+      --mono: 'Fira Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ─── GRID LINES ─── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,209,197,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,209,197,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      backdrop-filter: blur(16px);
+      background: rgba(13,15,20,0.8);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--heading);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(79,209,197,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      border: 1px solid rgba(79,209,197,0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      color: var(--heading);
+      line-height: 1.0;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      max-width: 600px;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0d0f14;
+      padding: 0.85rem 2rem;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: #38b2ac;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(79,209,197,0.3);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 2rem;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      color: var(--heading);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 4rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--heading);
+      line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--surface); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      font-size: 1.02rem;
+    }
+
+    .about-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-key {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      width: 110px;
+      flex-shrink: 0;
+    }
+
+    .info-val {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.5rem; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      opacity: 0.3;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 0.45rem;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(79,209,197,0.5);
+    }
+
+    .timeline-period {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-company {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--heading);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-role {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .timeline-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+    }
+
+    .timeline-card h4 {
+      font-size: 0.8rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      font-family: var(--mono);
+    }
+
+    .timeline-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .timeline-card ul li {
+      font-size: 0.92rem;
+      color: var(--text);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .timeline-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--surface); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(79,209,197,0.05) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .skill-card:hover { border-color: rgba(79,209,197,0.4); transform: translateY(-3px); }
+    .skill-card:hover::before { opacity: 1; }
+
+    .skill-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--heading);
+      margin-bottom: 0.25rem;
+    }
+
+    .skill-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ─── EDUCATION ─── */
+    #education { background: var(--bg); }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.8rem;
+      transition: border-color 0.25s;
+    }
+
+    .edu-card:hover { border-color: rgba(79,209,197,0.4); }
+
+    .edu-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent2);
+      border: 1px solid rgba(246,173,85,0.3);
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .edu-degree {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--heading);
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-school {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .edu-year { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+    .edu-gpa { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); font-weight: 500; }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .contact-intro {
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      color: var(--muted);
+    }
+
+    .contact-cards {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem 2rem;
+      text-decoration: none;
+      transition: all 0.25s;
+      min-width: 200px;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(79,209,197,0.12);
+    }
+
+    .contact-card-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .contact-card-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; font-family: var(--mono); }
+    .contact-card-val { font-size: 0.9rem; color: var(--text); font-weight: 500; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      footer { padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Rakib<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div class="hero-tag">Available for Opportunities</div>
+      <h1 class="hero-name">Md Rakib<br /><em>Mia</em></h1>
+      <p class="hero-title">Customer Service Representative · Fintech &amp; BPO Specialist</p>
+      <p class="hero-desc">
+        Dedicated customer service professional with 3+ years of experience in fintech and BPO environments. 
+        Skilled in omnichannel support — calls, social media, and email — with a commitment to resolving issues efficiently and exceeding customer expectations.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Get In Touch</a>
+        <a href="#experience" class="btn-secondary">View Experience</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div>
+          <div class="stat-num">2</div>
+          <div class="stat-label">Companies Served</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Customer Focus</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">01 — About Me</div>
+      <h2 class="section-title">A bit about<br /><em>who I am</em></h2>
+      <div class="about-grid reveal">
+        <div class="about-text">
+          <p>
+            I'm Md Rakib Mia, a customer service professional based in Mirpur, Dhaka. 
+            With over three years of hands-on experience in fintech and BPO settings, I specialize in delivering 
+            seamless support across multiple channels — phone, social media, and email.
+          </p>
+          <p>
+            Currently serving as a Customer Service Representative at Palmpay Limited BD, I bring a calm, 
+            solution-focused approach to every customer interaction. My background includes managing digital queries 
+            for Nagad (one of Bangladesh's largest MFS platforms) through Facebook, Instagram, and email.
+          </p>
+          <p>
+            Academically, I hold a B.Sc. in Soil Science from Govt. Bangla College (University of Dhaka) and am 
+            currently pursuing my M.Sc. — combining analytical thinking with strong interpersonal skills.
+          </p>
+        </div>
+        <div class="about-info">
+          <div class="info-row">
+            <span class="info-key">Location</span>
+            <span class="info-val">Mirpur, Dhaka-1216</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Email</span>
+            <span class="info-val">rakib202004@gmail.com</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Phone</span>
+            <span class="info-val">01845476473</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Languages</span>
+            <span class="info-val">Bangla, English</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Status</span>
+            <span class="info-val">Open to opportunities</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Blood</span>
+            <span class="info-val">AB+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label">02 — Work History</div>
+      <h2 class="section-title">Where I've<br /><em>worked</em></h2>
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-period">Nov 2025 – Present</div>
+          <div class="timeline-company">Palmpay Limited BD</div>
+          <div class="timeline-role">Customer Service Representative · Gulshan-1, Dhaka</div>
+          <div class="timeline-card">
+            <h4>Responsibilities</h4>
+            <ul>
+              <li>Managed customer support across call center and digital channels</li>
+              <li>Resolved issues in line with company policies and service standards</li>
+              <li>Provided troubleshooting and process guidance to ensure customer satisfaction</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-period">Dec 2023 – Nov 2025</div>
+          <div class="timeline-company">Digicon Technologies PLC</div>
+          <div class="timeline-role">Digital Query Management &amp; CSR at Nagad · Mirpur-12, Dhaka</div>
+          <div class="timeline-card">
+            <h4>Digital Query Management (Nagad)</h4>
+            <ul>
+              <li>Managed customer queries through Facebook, Instagram, and Email</li>
+              <li>Provided accurate information and timely responses</li>
+              <li>Ensured high customer satisfaction through professional communication</li>
+            </ul>
+          </div>
+          <div class="timeline-card" style="margin-top: 1rem;">
+            <h4>BPO – Inbound / Outbound Calls</h4>
+            <ul>
+              <li>Handled inbound and outbound calls efficiently</li>
+              <li>Resolved customer complaints and service issues</li>
+              <li>Maintained quality standards and achieved performance KPIs</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label">03 — Capabilities</div>
+      <h2 class="section-title">Skills &amp;<br /><em>expertise</em></h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-icon">📞</div>
+          <div class="skill-name">Call &amp; Chat Support</div>
+          <div class="skill-desc">Inbound &amp; outbound call handling across BPO environments</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">💬</div>
+          <div class="skill-name">Digital Query Management</div>
+          <div class="skill-desc">Social media, email, and live chat customer support</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🔧</div>
+          <div class="skill-name">Complaint Resolution</div>
+          <div class="skill-desc">Systematic issue diagnosis and effective problem resolution</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🏦</div>
+          <div class="skill-name">Fintech Support</div>
+          <div class="skill-desc">Customer support expertise in mobile financial services</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🗂️</div>
+          <div class="skill-name">CRM Management</div>
+          <div class="skill-desc">Proficient with CRM tools for tracking and managing interactions</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">📊</div>
+          <div class="skill-name">Microsoft Excel</div>
+          <div class="skill-desc">Pivot tables, data analysis, formulas &amp; reporting</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🤝</div>
+          <div class="skill-name">Communication</div>
+          <div class="skill-desc">Clear, empathetic communication in Bangla and English</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">⏱️</div>
+          <div class="skill-name">Time Management</div>
+          <div class="skill-desc">Prioritizing tasks and meeting SLAs under pressure</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🧩</div>
+          <div class="skill-name">Problem-Solving</div>
+          <div class="skill-desc">Analytical approach to resolving customer pain points</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label">04 — Academic Background</div>
+      <h2 class="section-title">Education &amp;<br /><em>training</em></h2>
+      <div class="edu-grid">
+        <div class="edu-card reveal">
+          <div class="edu-badge">Postgraduate</div>
+          <div class="edu-degree">Master of Science</div>
+          <div class="edu-school">Dept. of Soil Science<br />Govt. Shaheed Suhrawardy College, University of Dhaka</div>
+          <div class="edu-meta">
+            <div class="edu-year">2024 – Present</div>
+            <div class="edu-gpa">Appeared</div>
+          </div>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-badge">Undergraduate</div>
+          <div class="edu-degree">Bachelor of Science</div>
+          <div class="edu-school">Dept. of Soil Science<br />Govt. Bangla College, University of Dhaka</div>
+          <div class="edu-meta">
+            <div class="edu-year">2023</div>
+            <div class="edu-gpa">CGPA 3.14</div>
+          </div>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-badge">HSC</div>
+          <div class="edu-degree">Higher Secondary Certificate</div>
+          <div class="edu-school">Science · Agricultural University College, Mymensingh</div>
+          <div class="edu-meta">
+            <div class="edu-year">2019</div>
+            <div class="edu-gpa">GPA 3.75</div>
+          </div>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-badge">SSC</div>
+          <div class="edu-degree">Secondary School Certificate</div>
+          <div class="edu-school">Science · R.G High School</div>
+          <div class="edu-meta">
+            <div class="edu-year">2017</div>
+            <div class="edu-gpa">GPA 4.91</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course -->
+      <div style="margin-top: 2.5rem;" class="reveal">
+        <div class="section-label" style="margin-bottom: 1rem;">Professional Training</div>
+        <div class="edu-card" style="max-width: 500px;">
+          <div class="edu-badge">Course</div>
+          <div class="edu-degree">Microsoft Excel</div>
+          <div class="edu-school">10 Minute School · Formulas, Pivot Tables, Data Analysis, Automation</div>
+          <div class="edu-meta">
+            <div class="edu-year">Completed</div>
+            <div class="edu-gpa">Certified</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label" style="justify-content: center;">05 — Let's Connect</div>
+      <h2 class="section-title" style="text-align:center;">Get in<br /><em>touch</em></h2>
+      <p class="contact-intro">
+        Whether you have an opportunity, a question, or just want to say hello — my inbox is open.
+      </p>
+      <div class="contact-cards reveal">
+        <a href="mailto:rakib202004@gmail.com" class="contact-card">
+          <div class="contact-card-icon">✉️</div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-val">rakib202004@gmail.com</div>
+        </a>
+        <a href="tel:+8801845476473" class="contact-card">
+          <div class="contact-card-icon">📱</div>
+          <div class="contact-card-label">Phone</div>
+          <div class="contact-card-val">01845476473</div>
+        </a>
+        <div class="contact-card">
+          <div class="contact-card-icon">📍</div>
+          <div class="contact-card-label">Location</div>
+          <div class="contact-card-val">Mirpur, Dhaka-1216</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Md Rakib Mia · Built for the web · All rights reserved</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (i * 0.05) + 's';
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
